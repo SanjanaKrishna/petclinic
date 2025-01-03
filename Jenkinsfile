@@ -62,7 +62,7 @@ pipeline {
             steps {
                 echo 'Validating that the app is running...'
                 script {
-                    def response = sh(script: 'curl --write-out "%{http_code}" --silent --output /dev/null http://localhost:8080/petclinic', returnStdout: true).trim()
+                    def response = sh(script: 'curl --write-out "%{http_code}" --silent --output /dev/null http://localhost:8080', returnStdout: true).trim()
                     if (response == "200") {
                         echo 'The app is running successfully!'
                     } else {
