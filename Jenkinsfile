@@ -12,49 +12,56 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                pipeline.checkoutCode()
+                
+                script {
+				pipeline.checkoutCode()
+				       }
             }
         }
 
         stage('Set up Java 17') {
             steps {
-                pipeline.setupJava()
+                 script {
+                pipeline.setupJava() }
             }
         }
 
         stage('Set up Maven') {
             steps {
-                pipeline.setupMaven()
+                 script {
+                pipeline.setupMaven() }
             }
         }
 
         stage('Build with Maven') {
             steps {
-                pipeline.buildProject()
+                 script {
+                pipeline.buildProject() }
             }
         }
 
         stage('Upload Artifact') {
-            steps {
-                pipeline.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
+            steps {  script {
+                pipeline.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar') }
             }
         }
 
         stage('Run Application') {
-            steps {
-                pipeline.runApplication()
+            steps {  script {
+                pipeline.runApplication()}
             }
         }
 
         stage('Validate App is Running') {
-            steps {
-                pipeline.validateApp()
+            steps {  script {
+                pipeline.validateApp() }
             }
         }
 
         stage('Gracefully Stop Spring Boot App') {
             steps {
-                pipeline.stopApplication()
+                  script {
+                pipeline.stopApplication() }
             }
         }
     }
