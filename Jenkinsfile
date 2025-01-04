@@ -3,10 +3,10 @@
 
 pipeline {
     agent { label 'Node3' }
-    triggers {
-        // Trigger at midnight every day
-        cron('*/2 * * * *')
-    }
+    // triggers {
+    //     // Trigger at midnight every day
+    //     cron('*/2 * * * *')
+    // }
 
     environment {
         JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
