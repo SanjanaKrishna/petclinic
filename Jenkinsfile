@@ -1,4 +1,4 @@
-@Library('my-shared-library') _
+@Library('my-shared-library@main') _
 
 pipeline {
     agent { label 'Node3' }
@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 script {
-                    pipeline.checkoutCode()
+                    checkoutCode()
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Set up Java 17') {
             steps {
                 script {
-                    pipeline.setupJava()
+                    setupJava()
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Set up Maven') {
             steps {
                 script {
-                    pipeline.setupMaven()
+                    setupMaven()
                 }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage('Build with Maven') {
             steps {
                 script {
-                    pipeline.buildProject()
+                    buildProject()
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
         stage('Upload Artifact') {
             steps {
                 script {
-                    pipeline.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
+                    uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
                 }
             }
         }
@@ -53,7 +53,7 @@ pipeline {
         stage('Run Application') {
             steps {
                 script {
-                    pipeline.runApplication()
+                    runApplication()
                 }
             }
         }
@@ -61,7 +61,7 @@ pipeline {
         stage('Validate App is Running') {
             steps {
                 script {
-                    pipeline.validateApp()
+                    validateApp()
                 }
             }
         }
@@ -69,7 +69,7 @@ pipeline {
         stage('Gracefully Stop Spring Boot App') {
             steps {
                 script {
-                    pipeline.stopApplication()
+                    stopApplication()
                 }
             }
         }
@@ -78,7 +78,7 @@ pipeline {
     post {
         always {
             script {
-                pipeline.cleanup()
+                cleanup()
             }
         }
     }
