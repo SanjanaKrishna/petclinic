@@ -42,14 +42,14 @@ pipeline {
                  }
             }
         }
-        stage('Tag Build') {
-            steps {
-                script {
-                    def buildTag = "build-${env.BUILD_NUMBER}"
-                    tagBuild(buildTag, "Tagging build number ${env.BUILD_NUMBER}")
-                }
-            }
-        }
+        // stage('Tag Build') {
+        //     steps {
+        //         script {
+        //             def buildTag = "build-${env.BUILD_NUMBER}"
+        //             tagBuild(buildTag, "Tagging build number ${env.BUILD_NUMBER}")
+        //         }
+        //     }
+        // }
         stage('Upload Artifact') {
             steps {
                  script {
