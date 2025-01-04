@@ -46,7 +46,7 @@ pipeline {
         stage('Upload Artifact') {
             steps {
                  script {
-                   pipelineAll.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
+                   pipelineAll.uploadArtifact('target/petclinic-0.0.1-SNAPSHOT.jar')
                  }
             }
         }
