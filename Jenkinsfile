@@ -1,4 +1,4 @@
-@Library('my-shared-library@main') _  // Correct syntax
+@Library('my-shared-library@main') _
 
 pipeline {
     agent { label 'Node3' }
@@ -13,61 +13,73 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 script {
-			pipeline.checkoutCode()
-		       }
+                    pipeline.checkoutCode()
+                }
             }
         }
 
         stage('Set up Java 17') {
             steps {
-                 script {
-                pipeline.setupJava() }
+                script {
+                    pipeline.setupJava()
+                }
             }
         }
 
         stage('Set up Maven') {
             steps {
-                 script {
-                pipeline.setupMaven() }
+                script {
+                    pipeline.setupMaven()
+                }
             }
         }
 
         stage('Build with Maven') {
             steps {
-                 script {
-                pipeline.buildProject() }
+                script {
+                    pipeline.buildProject()
+                }
             }
         }
 
         stage('Upload Artifact') {
-            steps {  script {
-                pipeline.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar') }
+            steps {
+                script {
+                    pipeline.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
+                }
             }
         }
 
         stage('Run Application') {
-            steps {  script {
-                pipeline.runApplication()}
+            steps {
+                script {
+                    pipeline.runApplication()
+                }
             }
         }
 
         stage('Validate App is Running') {
-            steps {  script {
-                pipeline.validateApp() }
+            steps {
+                script {
+                    pipeline.validateApp()
+                }
             }
         }
 
         stage('Gracefully Stop Spring Boot App') {
             steps {
-                  script {
-                pipeline.stopApplication() }
+                script {
+                    pipeline.stopApplication()
+                }
             }
         }
     }
 
     post {
         always {
-            cleanup()
+            script {
+                pipeline.cleanup()
+            }
         }
     }
 }
